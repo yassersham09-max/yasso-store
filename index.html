@@ -156,62 +156,56 @@
 
 
     </script>
-    <script type="module">
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
 
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+    const firebaseConfig = {
+        apiKey: "AIzaSyDzz7bm5SbBUzI-DhM7M2JoGONkmu1A3pk",
+        authDomain: "yasso-store-ed5d6.firebaseapp.com",
+        projectId: "yasso-store-ed5d6",
+        storageBucket: "yasso-store-ed5d6.firebasestorage.app",
+        messagingSenderId: "60188373941",
+        appId: "1:60188373941:web:6a7b6773d4b59e30185ffc",
+        measurementId: "G-E8MCBEWYCT"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+        const authLink = document.getElementById("authLink");
+        if (user) {
+            if (authLink) authLink.style.display = "none";
+        } else {
+            if (authLink) authLink.style.display = "block";
+        }
+    });
+
+    window.showsidebar = function () {
+        document.querySelector('.sidebar').classList.add('active');
+    }
+    window.hidesidebar = function () {
+        document.querySelector('.sidebar').classList.remove('active');
+    }
 
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyDzz7bm5SbBUzI-DhM7M2JoGONkmu1A3pk",
-            authDomain: "yasso-store-ed5d6.firebaseapp.com",
-            projectId: "yasso-store-ed5d6",
-            storageBucket: "yasso-store-ed5d6.firebasestorage.app",
-            messagingSenderId: "60188373941",
-            appId: "1:60188373941:web:6a7b6773d4b59e30185ffc",
-            measurementId: "G-E8MCBEWYCT"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-
-
-        onAuthStateChanged(auth, (user) => {
-            const authLink = document.getElementById("authLink");
-            if (user) {
-
-                if (authLink) authLink.style.display = "none";
-            } else {
-
-                if (authLink) authLink.style.display = "block";
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show-animation');
             }
         });
+    }, {
+        threshold: 0.1 
+    });
 
+    document.querySelectorAll('section').forEach((section) => {
+        observer.observe(section);
+    });
+    // ------------------------------------------
 
-        window.showsidebar = function () {
-            document.querySelector('.sidebar').classList.add('active');
-        }
-        window.hidesidebar = function () {
-            document.querySelector('.sidebar').classList.remove('active');
-        }
-        /* الحالة الافتراضية لكل سكشن (قبل ما اليوزر يوصل له) */
-section {
-    opacity: 0;
-    transform: translateY(20px); /* حركة خفيفة للأعلى مع الظهور */
-    transition: all 0.6s ease-out;
-}
-
-/* الكلاس اللي الـ JS بيضيفه أول ما السكشن يظهر */
-section.show-animation {
-    opacity: 1;
-    transform: translateY(0);
-    /* هنا بنادي على الأنيميشن اللي أنت اخترته */
-    animation: scale-up-ver-top 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-}
-
-
-   
-    </script>
+</script>
 </body>
 
 </html>
