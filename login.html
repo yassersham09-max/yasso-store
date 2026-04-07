@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Yasso Signup</title>
+</head>
+
+<body>
+
+    <form class="form">
+        <p class="title">Yasso</p>
+        <p class="message">Signup now and get full access to our website.</p>
+
+        <div class="flex">
+            <label>
+                <input required type="text" class="input">
+                <span>Firstname</span>
+            </label>
+
+            <label>
+                <input required type="text" class="input">
+                <span>Lastname</span>
+            </label>
+        </div>
+
+        <label>
+            <input required type="email" id="email" class="input">
+            <span>Email</span>
+        </label>
+
+        <label>
+            <input required type="password" id="password" class="input">
+            <span>Password</span>
+        </label>
+
+        <label>
+            <input required type="password" id="confirmPassword" class="input">
+            <span>Confirm password</span>
+        </label>
+
+        <button class="submit">Submit</button>
+        <button type="button" id="googleBtn" class="google">Continue with Google </button>
+
+
+
+
+        <p class="signin">
+            Already have an account?
+            <a href="#">Signin</a>
+        </p>
+    </form>
+    <script>
+
+    </script>
+
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword }
+            from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDzz7bm5SbBUzI-DhM7M2JoGONkmu1A3pk",
+            authDomain: "yasso-store-ed5d6.firebaseapp.com",
+            projectId: "yasso-store-ed5d6",
+            storageBucket: "yasso-store-ed5d6.firebasestorage.app",
+            messagingSenderId: "60188373941",
+            appId: "1:60188373941:web:6a7b6773d4b59e30185ffc",
+            measurementId: "G-E8MCBEWYCT"
+        };
+
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+
+
+        document.querySelector(".form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+
+            if (email === "" || !email.includes("@")) {
+                alert("Write a valid email address❌");
+                return;
+            }
+
+            if (password.length < 6) {
+                alert("The password must be at least 6 characters long.❌");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("The password does not match❌");
+                return;
+            }
+
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then(() => {
+                    alert("Registration completed successfully🔥");
+                    window.location.href = "Yasso.html";
+                })
+                .catch((error) => {
+                    alert(error.message);
+                });
+        });
+        import { GoogleAuthProvider, signInWithPopup }
+            from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+        const provider = new GoogleAuthProvider();
+
+        document.getElementById("googleBtn").addEventListener("click", () => {
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    const user = result.user;
+
+                    alert("Hello" + user.displayName + " 🔥");
+
+                    window.location.href = "Yasso.html";
+                })
+                .catch((error) => {
+                    alert(error.message);
+                });
+        });
+
+    </script>
+
+
+</body>
+
+</html>

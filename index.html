@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="shose.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <h1><a href="#Home">Home</a></h1>
+        </div>
+        <ul class="sidebar">
+            <li onclick=hidesidebar()><a href="#"><i class="fa-solid fa-xmark"></i></a></li>
+            <li><a href="#Shop">Shop</a></li>
+            <li><a href="#About">About</a></li>
+            <li><a href="#Man">Man</a></li>
+            <li><a href="#Women">Women</a></li>
+            <li><a href="#New-Collection">New Collection</a></li>
+            <li><a href="#Contact">Contact</a></li>
+        </ul>
+        <ul class="ul">
+            <li><a href="#Shop">Shop</a></li>
+            <li><a href="#About">About</a></li>
+            <li><a href="#Man">Man</a></li>
+            <li><a href="#Women">Women</a></li>
+            <li><a href="#New-Collection">New Collection</a></li>
+            <li><a href="#Contact">Contact</a></li>
+            <li onclick=showsidebar() class="menu"><a href="#"><i class="fa-solid fa-bars"></i></a></li>
+        </ul>
+        <a href="login.html" id="authLink"><button>Login / Sign up</button></a>
+    </nav>
+    <section class="Home" id="Home">
+        <div>
+            <h2><span>Step Into Style</span> – Shoes That Reflect Your Personality!</h2>
+            <p>Discover our amazing collection of shoes designed to combine comfort and style. <br> Whether you’re
+                looking for <span>classic</span>, <span>sporty</span>, or <span>everyday shoes</span>, you’ll find the
+                perfect fit for every step of your journey.</p> <button>Buy now</button>
+        </div> <img src="img/shoe.png" alt="img-1">
+    </section>
+    <!--Featured-Products-->
+    <section class="Featured-Products">
+        <h2><span>Featured</span>-Products</h2>
+        <div class="cards-Featured-Productsc">
+            <div class="card card-1">
+
+                <h2>Jordan Sport</h2>
+                <div class="button"> Add to Cart </div>
+                <div>
+                    <p>High performance sneakers</p> <b>price: $130</b>
+                </div>
+
+            </div>
+            <div class="card card-2">
+
+                <h2>Puma RS-X</h2>
+                <div class="button"> Add to Cart </div>
+                <div>
+                    <p>Modern street style</p> <b>price: $95</b>
+                </div>
+
+            </div>
+            <div class="card card-3">
+
+                <h2>Adidas Ultra Boost</h2>
+                <div class="button"> Add to Cart </div>
+                <div>
+                    <p>Lightweight sport shoes</p> <b>price: $110</b>
+                </div>
+
+            </div>
+            <div class="card card-4">
+
+                <h2>Nike Air Max</h2>
+                <div class="button"> Add to Cart </div>
+                <div>
+                    <p>Comfortable running shoes </p> <b>price: $120</b>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Featured-Products-->
+    <section class="shop-by-category" id="Shop">
+        <h2><span>Shop</span> By Category</h2>
+        <div class="dad" id="Man">
+            <div class="item item-1">
+                <article>
+                    <h2>Man</h2>
+                    <b>Explore →</b>
+                </article>
+            </div>
+            <div class="item-2">
+                <div class="in-item in-item-1" id="Women">
+                    <article>
+                        <h2>ًWomen</h2><b>Explore →</b>
+                    </article>
+                </div>
+                <div class="in-item in-item-2">
+                    <article>
+                        <h2><span>Sport</span> Shoes</h2><b>Explore →</b>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="new-collection" id="New-Collection">
+        <h2>New <span>Collection</span></h2>
+        <p>
+            Step into the future with our newest collection.
+            Crafted for comfort and built for style.
+        </p>
+        <div><span class="discount">-50%</span></div>
+    </section>
+    <footer class="footer">
+        <div class="footer-container">
+
+            <div class="footer-logo">
+                <h2>Yasso Store</h2>
+                <p>Your style starts from your shoes.</p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <a href="#Home">Home</a>
+                <a href="#Shop">Shop</a>
+                <a href="#About">About</a>
+                <a href="#Contact">Contact</a>
+            </div>
+
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+
+        </div>
+
+        <p class="copy">© 2026 Yasso Store | All Rights Reserved</p>
+    </footer>
+    <script>
+        function showsidebar() {
+            document.querySelector('.sidebar').classList.add('active')
+        }
+
+        function hidesidebar() {
+            document.querySelector('.sidebar').classList.remove('active')
+        }
+
+
+    </script>
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDzz7bm5SbBUzI-DhM7M2JoGONkmu1A3pk",
+            authDomain: "yasso-store-ed5d6.firebaseapp.com",
+            projectId: "yasso-store-ed5d6",
+            storageBucket: "yasso-store-ed5d6.firebasestorage.app",
+            messagingSenderId: "60188373941",
+            appId: "1:60188373941:web:6a7b6773d4b59e30185ffc",
+            measurementId: "G-E8MCBEWYCT"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+
+        onAuthStateChanged(auth, (user) => {
+            const authLink = document.getElementById("authLink");
+            if (user) {
+
+                if (authLink) authLink.style.display = "none";
+            } else {
+
+                if (authLink) authLink.style.display = "block";
+            }
+        });
+
+
+        window.showsidebar = function () {
+            document.querySelector('.sidebar').classList.add('active');
+        }
+        window.hidesidebar = function () {
+            document.querySelector('.sidebar').classList.remove('active');
+        }
+    </script>
+</body>
+
+</html>
