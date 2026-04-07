@@ -213,20 +213,7 @@ ul {
     border-radius: 12px;
     border: 2px solid rgb(154, 143, 139);
 }
-/* hover-section */
-section {
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
-}
 
-
-
-.show-animation {
-    opacity: 1 !important;
-    -webkit-animation: scale-up-ver-top 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-            animation: scale-up-ver-top 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-}
-/* hover-section */
 /*Home*/
 .Home {
     display: flex;
