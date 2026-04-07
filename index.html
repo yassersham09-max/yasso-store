@@ -194,6 +194,22 @@
         window.hidesidebar = function () {
             document.querySelector('.sidebar').classList.remove('active');
         }
+
+
+        const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                // أول ما السكشن يظهر قدام العين، بنضيف كلاس الأنيميشن
+                entry.target.classList.add('show-animation');
+            }
+        });
+    }, {
+        threshold: 0.2 // معناه ابدأ الأنيميشن لما يظهر 20% من السكشن
+    });
+
+    // بنقول للـ Observer يراقب كل السكاشن اللي في الصفحة
+    const allSections = document.querySelectorAll('section');
+    allSections.forEach((section) => observer.observe(section));
     </script>
 </body>
 
